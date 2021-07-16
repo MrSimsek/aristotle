@@ -4,9 +4,13 @@ import SignupForm from '../../components/forms/SignupForm';
 import AuthLayout from '../../layouts/AuthLayout';
 
 export default function SignupPage() {
+  const handleSignupFormSubmit = () => {
+    console.log('Signup form submitted.');
+  };
+
   return (
     <AuthLayout>
-      <SignupForm />
+      <SignupForm handleSubmit={handleSignupFormSubmit} />
     </AuthLayout>
   );
 }
