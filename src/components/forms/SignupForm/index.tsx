@@ -3,7 +3,13 @@ import { Form, Input, Button, Select } from 'antd';
 
 import styles from './signupForm.styles.css';
 
-export default function SignupForm() {
+type SignupFormProps = {
+  handleSubmit: () => void;
+};
+
+export default function SignupForm(props: SignupFormProps) {
+  const { handleSubmit } = props;
+
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
