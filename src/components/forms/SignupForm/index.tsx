@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
+import { Link } from 'react-router-dom';
 
 import styles from './signupForm.styles.css';
 
@@ -87,7 +88,8 @@ export default function SignupForm(props: SignupFormProps) {
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Submit
-        </Button>
+        </Button>{' '}
+        or <Link to="/">Login</Link>
       </Form.Item>
     </Form>
   );
