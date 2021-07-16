@@ -9,5 +9,9 @@ type AuthLayoutProps = {
 export default function AuthLayout(props: AuthLayoutProps) {
   const { children } = props;
 
-  return <div className={styles.authLayoutContainer}>{children}</div>;
+  return (
+    <div className={styles.authLayoutContainer}>
+      <div className={styles.formContainer}>{children}</div>
+    </div>
+  );
 }
