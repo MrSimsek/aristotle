@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select } from 'antd';
 import { Link } from 'react-router-dom';
 
 import useSignupFormStyles from './useSignupFormStyles';
+import countryOptions from '../../../constants/countryOptions';
+import { fetchClientRegion } from '../../../helpers/location';
 
 type SignupFormProps = {
   handleSubmit: () => void;
@@ -14,6 +16,14 @@ export default function SignupForm(props: SignupFormProps) {
   const classes = useSignupFormStyles();
 
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    fetchClientRegion()
+      .then((response) => form.setFieldsValue({ region: response.countryCode }))
+      .catch(() => {
+        // TODO: Handle region request failure
+      });
+  }, [form]);
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -33,7 +43,6 @@ export default function SignupForm(props: SignupFormProps) {
       className={classes.formContainer}
       name="basic"
       layout="vertical"
-      initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
@@ -47,9 +56,11 @@ export default function SignupForm(props: SignupFormProps) {
           onChange={onRegionChange}
           allowClear
         >
-          <Select.Option value="male">male</Select.Option>
-          <Select.Option value="female">female</Select.Option>
-          <Select.Option value="other">other</Select.Option>
+          {countryOptions.map((option) => (
+            <Select.Option key={option.value} value={option.value}>
+              {option.label}
+            </Select.Option>
+          ))}
         </Select>
       </Form.Item>
 
@@ -66,7 +77,13 @@ export default function SignupForm(props: SignupFormProps) {
       <Form.Item
         label="Email"
         name="email"
-        rules={[{ required: true, message: 'Please enter your email.' }]}
+        rules={[
+          {
+            required: true,
+            type: 'email',
+            message: 'Please enter your email.',
+          },
+        ]}
       >
         <Input />
       </Form.Item>
