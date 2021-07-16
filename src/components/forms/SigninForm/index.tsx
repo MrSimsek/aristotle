@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
 import { Link } from 'react-router-dom';
 
-import styles from './signinForm.styles.css';
+import useSigninFormStyles from './useSigninFormStyles';
 
 type SigninFormProps = {
   handleSubmit: () => void;
@@ -10,6 +10,8 @@ type SigninFormProps = {
 
 export default function SigninForm(props: SigninFormProps) {
   const { handleSubmit } = props;
+
+  const classes = useSigninFormStyles();
 
   const [form] = Form.useForm();
 
@@ -28,7 +30,7 @@ export default function SigninForm(props: SigninFormProps) {
   return (
     <Form
       form={form}
-      className={styles.formContainer}
+      className={classes.formContainer}
       name="basic"
       layout="vertical"
       initialValues={{ remember: true }}

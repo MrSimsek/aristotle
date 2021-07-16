@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './authLayout.styles.css';
+import useAuthLayoutStyles from './useAuthLayoutStyles';
 
 type AuthLayoutProps = {
   children: React.ReactNode;
@@ -9,9 +9,11 @@ type AuthLayoutProps = {
 export default function AuthLayout(props: AuthLayoutProps) {
   const { children } = props;
 
+  const classes = useAuthLayoutStyles();
+
   return (
-    <div className={styles.authLayoutContainer}>
-      <div className={styles.formContainer}>{children}</div>
+    <div className={classes.authLayoutContainer}>
+      <div className={classes.formContainer}>{children}</div>
     </div>
   );
 }

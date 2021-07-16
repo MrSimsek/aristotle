@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
 import { Link } from 'react-router-dom';
 
-import styles from './signupForm.styles.css';
+import useSignupFormStyles from './useSignupFormStyles';
 
 type SignupFormProps = {
   handleSubmit: () => void;
@@ -10,6 +10,8 @@ type SignupFormProps = {
 
 export default function SignupForm(props: SignupFormProps) {
   const { handleSubmit } = props;
+
+  const classes = useSignupFormStyles();
 
   const [form] = Form.useForm();
 
@@ -28,7 +30,7 @@ export default function SignupForm(props: SignupFormProps) {
   return (
     <Form
       form={form}
-      className={styles.formContainer}
+      className={classes.formContainer}
       name="basic"
       layout="vertical"
       initialValues={{ remember: true }}
