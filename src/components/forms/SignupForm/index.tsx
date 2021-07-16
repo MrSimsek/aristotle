@@ -87,7 +87,7 @@ export default function SignupForm(props: SignupFormProps) {
 
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          Submit
+          Sign Up
         </Button>{' '}
         or <Link to="/">Login</Link>
       </Form.Item>
