@@ -10,7 +10,7 @@ yarn start
 
 ## Packaging for Production
 
-To package apps for the local platform:
+To package apps for the local platform (Node version must be 14.x.x):
 
 ```bash
 yarn package
