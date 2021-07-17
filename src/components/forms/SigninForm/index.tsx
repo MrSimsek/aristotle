@@ -3,20 +3,22 @@ import { Form, Input, Button, Select } from 'antd';
 import { Link } from 'react-router-dom';
 
 import useSigninFormStyles from './useSigninFormStyles';
+import { SigninFormTypes } from '../../../types/forms';
 
 type SigninFormProps = {
-  handleSubmit: () => void;
+  handleSubmit: (values: SigninFormTypes) => void;
+  loading?: boolean;
 };
 
 export default function SigninForm(props: SigninFormProps) {
-  const { handleSubmit } = props;
+  const { handleSubmit, loading } = props;
 
   const classes = useSigninFormStyles();
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<SigninFormTypes>();
 
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
+  const onFinish = (values: SigninFormTypes) => {
+    handleSubmit(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -54,7 +56,7 @@ export default function SigninForm(props: SigninFormProps) {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loading}>
           Sign In
         </Button>{' '}
         or <Link to="/signup">Register</Link>
@@ -62,3 +64,7 @@ export default function SigninForm(props: SigninFormProps) {
     </Form>
   );
 }
+
+SigninForm.defaultProps = {
+  loading: false,
+};
