@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Popover } from 'antd';
 import { Link } from 'react-router-dom';
 
 import useSignupFormStyles from './useSignupFormStyles';
@@ -38,6 +38,19 @@ export default function SignupForm(props: SignupFormProps) {
   const onRegionChange = (value: string) => {
     console.log(value);
   };
+
+  const passwordPolicyMarkup = (
+    <>
+      <h4>Your password should contain: </h4>
+      <ul>
+        <li>Minimum length of 8 characters</li>
+        <li>Numerical characters (0-9)</li>
+        <li>Special characters</li>
+        <li>Uppercase letter</li>
+        <li>Lowercase letter</li>
+      </ul>
+    </>
+  );
 
   return (
     <Form
@@ -95,7 +108,14 @@ export default function SignupForm(props: SignupFormProps) {
         name="password"
         rules={[{ required: true, message: 'Please enter your password.' }]}
       >
-        <Input.Password />
+        <Popover
+          placement="right"
+          title="Password Policy"
+          content={passwordPolicyMarkup}
+          trigger="focus"
+        >
+          <Input.Password />
+        </Popover>
       </Form.Item>
 
       <Form.Item
