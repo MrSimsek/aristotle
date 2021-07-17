@@ -1,11 +1,11 @@
 import React from 'react';
 
-import AuthLayout from '../../layouts/AuthLayout';
+import DashboardLayout from '../../layouts/DashboardLayout';
 
 export default function DashboardPage() {
   return (
-    <AuthLayout>
+    <DashboardLayout>
       <p style={{ textAlign: 'center' }}>Welcome! This is the user page.</p>
-    </AuthLayout>
+    </DashboardLayout>
   );
 }
