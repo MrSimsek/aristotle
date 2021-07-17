@@ -103,20 +103,20 @@ export default function SignupForm(props: SignupFormProps) {
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please enter your password.' }]}
+      <Popover
+        placement="right"
+        title="Password Policy"
+        content={passwordPolicyMarkup}
+        trigger="focus"
       >
-        <Popover
-          placement="right"
-          title="Password Policy"
-          content={passwordPolicyMarkup}
-          trigger="focus"
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please enter your password.' }]}
         >
           <Input.Password />
-        </Popover>
-      </Form.Item>
+        </Form.Item>
+      </Popover>
 
       <Form.Item
         label="Confirm Password"
@@ -127,6 +127,7 @@ export default function SignupForm(props: SignupFormProps) {
           { required: true, message: 'Please confirm your password.' },
           ({ getFieldValue }) => ({
             validator(_, value) {
+              console.log(value);
               if (!value || getFieldValue('password') === value) {
                 return Promise.resolve();
               }
