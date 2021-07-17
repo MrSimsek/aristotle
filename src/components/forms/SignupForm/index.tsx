@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom';
 import useSignupFormStyles from './useSignupFormStyles';
 import countryOptions from '../../../constants/countryOptions';
 import { fetchClientRegion } from '../../../helpers/location';
+import { SignupFormTypes } from '../../../types/forms';
 
 type SignupFormProps = {
-  handleSubmit: () => void;
+  handleSubmit: (values: SignupFormTypes) => void;
+  loading?: boolean;
 };
 
 export default function SignupForm(props: SignupFormProps) {
-  const { handleSubmit } = props;
+  const { handleSubmit, loading } = props;
 
   const classes = useSignupFormStyles();
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<SignupFormTypes>();
 
   useEffect(() => {
     fetchClientRegion()
@@ -25,8 +27,8 @@ export default function SignupForm(props: SignupFormProps) {
       });
   }, [form]);
 
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
+  const onFinish = (values: SignupFormTypes) => {
+    handleSubmit(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -105,7 +107,7 @@ export default function SignupForm(props: SignupFormProps) {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loading}>
           Sign Up
         </Button>{' '}
         or <Link to="/">Login</Link>
@@ -113,3 +115,7 @@ export default function SignupForm(props: SignupFormProps) {
     </Form>
   );
 }
+
+SignupForm.defaultProps = {
+  loading: false,
+};
