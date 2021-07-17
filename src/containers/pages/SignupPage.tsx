@@ -57,7 +57,7 @@ export default function SignupPage() {
         setRedirect(true);
 
         notification.success({
-          message: 'Succesfully signed up user!',
+          message: 'Successfully signed up user!',
           description:
             'Account created successfully, Redirecting you in a few!',
           placement: 'topRight',
