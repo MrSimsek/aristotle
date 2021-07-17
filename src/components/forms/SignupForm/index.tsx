@@ -127,7 +127,6 @@ export default function SignupForm(props: SignupFormProps) {
           { required: true, message: 'Please confirm your password.' },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              console.log(value);
               if (!value || getFieldValue('password') === value) {
                 return Promise.resolve();
               }
