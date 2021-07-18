@@ -1,7 +1,8 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "aristotle",
   "productName": "Aristotle",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Fast Refresh for rapid application development",
+  "description": "Aristotle app",
+  "version": "0.0.1",
   "scripts": {
     "build": "concurrently \"yarn build:main\" \"yarn build:renderer\"",
     "build:main": "cross-env NODE_ENV=production webpack --config ./.erb/configs/webpack.config.main.prod.babel.js",
@@ -31,7 +32,10 @@
   },
   "build": {
     "productName": "Aristotle",
-    "appId": "org.erb.ElectronReact",
+    "appId": "com.simsekdev.Aristotle",
+    "appImage": {
+      "license": "LICENSE"
+    },
     "files": [
       "dist/",
       "node_modules/",
@@ -65,10 +69,9 @@
         }
       ]
     },
-    "win": {
-      "target": [
-        "nsis"
-      ]
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "license": "LICENSE"
     },
     "linux": {
       "target": [
@@ -84,49 +87,17 @@
     "extraResources": [
       "./assets/**"
     ],
-    "publish": {
-      "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
-    }
+    "publish": "github"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
-  },
-  "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
-  },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    },
-    {
-      "name": "John Tran",
-      "email": "jptran318@gmail.com",
-      "url": "https://github.com/jooohhn"
-    }
-  ],
+  "repository": "https://github.com/MrSimsek/aristotle",
+  "author": "Deniz Simsek",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
-  },
   "keywords": [
     "electron",
-    "boilerplate",
     "react",
     "typescript",
-    "ts",
-    "sass",
-    "webpack",
-    "hot",
-    "reload"
+    "travis"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
   "jest": {
     "testURL": "http://localhost/",
     "moduleNameMapper": {
@@ -268,9 +239,6 @@
     "node": ">=10.x",
     "npm": ">=6.x",
     "yarn": ">=1.21.3"
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "browserslist": [],
   "prettier": {
