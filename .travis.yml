@@ -48,7 +48,8 @@ script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
-        -e AWS_USER_POOL_ID AWS_CLIENT_ID \
+        -e AWS_USER_POOL_ID \
+        -e AWS_CLIENT_ID \
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
