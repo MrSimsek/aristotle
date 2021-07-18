@@ -43,6 +43,9 @@ before_install:
 before_script:
   - git lfs pull
 
+install:
+  - yarn
+
 # on PRs and merges to specified branches run tests and build the app
 script:
   - |
