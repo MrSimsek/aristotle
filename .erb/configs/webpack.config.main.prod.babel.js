@@ -1,7 +1,7 @@
 /**
  * Webpack config for production electron main process
  */
-
+import dotenv from 'dotenv';
 import path from 'path';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
@@ -14,9 +14,12 @@ import DeleteSourceMaps from '../scripts/DeleteSourceMaps';
 CheckNodeEnv('production');
 DeleteSourceMaps();
 
-const devtoolsConfig = process.env.DEBUG_PROD === 'true' ? {
-  devtool: 'source-map'
-} : {};
+const devtoolsConfig =
+  process.env.DEBUG_PROD === 'true'
+    ? {
+        devtool: 'source-map',
+      }
+    : {};
 
 export default merge(baseConfig, {
   ...devtoolsConfig,
@@ -37,7 +40,7 @@ export default merge(baseConfig, {
       new TerserPlugin({
         parallel: true,
       }),
-    ]
+    ],
   },
 
   plugins: [
@@ -60,6 +63,7 @@ export default merge(baseConfig, {
       NODE_ENV: 'production',
       DEBUG_PROD: false,
       START_MINIMIZED: false,
+      ...dotenv.config().parsed,
     }),
   ],
 
