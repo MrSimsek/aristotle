@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import classNames from 'classnames';
-import {
-  BarChartOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 import useDashboardLayoutStyles from './useDashboardLayoutStyles';
+
+import { MenuItemTypes } from '../../types/dashboard';
 
 const { Header, Content, Sider } = Layout;
 
 type DashboardLayoutProps = {
-  children: React.ReactNode;
+  menuItems: MenuItemTypes[];
 };
 
 export default function DashboardLayout(props: DashboardLayoutProps) {
-  const { children } = props;
+  const { menuItems } = props;
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([
+    menuItems[0].key,
+  ]);
 
   const classes = useDashboardLayoutStyles();
 
   const toggle = () => setCollapsed(!collapsed);
+
+  const handleNavigation = (key: string) => {
+    setSelectedKeys([key]);
+  };
 
   return (
     <Layout className={classes.dashboardLayoutContainer}>
@@ -36,19 +38,16 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
         collapsed={collapsed}
       >
         <div className={classes.logo} />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
-          </Menu.Item>
-          <Menu.Item key="4" icon={<BarChartOutlined />}>
-            nav 4
-          </Menu.Item>
+        <Menu theme="dark" mode="inline" selectedKeys={selectedKeys}>
+          {menuItems.map((item) => (
+            <Menu.Item
+              key={item.key}
+              onClick={({ key }) => handleNavigation(key)}
+              icon={item.icon}
+            >
+              {item.title}
+            </Menu.Item>
+          ))}
         </Menu>
       </Sider>
       <Layout>
@@ -71,7 +70,7 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
               classes.content
             )}
           >
-            {children}
+            {menuItems.find((item) => item.key === selectedKeys[0])?.content}
           </div>
         </Content>
       </Layout>
