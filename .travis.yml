@@ -42,6 +42,8 @@ before_install:
     fi
 before_script:
   - git lfs pull
+  - chmod +x ./setup_env.sh
+  - ./setup_env.sh
 
 # on PRs and merges to specified branches run tests and build the app
 script:
