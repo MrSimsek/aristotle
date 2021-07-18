@@ -8,14 +8,14 @@ import {
 
 import DashboardLayout from '../../layouts/DashboardLayout';
 
-import DashboardHomePage from '../dashboard/DashboardHomePage';
+import DashboardHomeContent from '../dashboard/DashboardHomeContent';
 
 export default function DashboardPage() {
   const menuItems = [
     {
       key: 'page-1',
       title: 'Page 1',
-      content: <DashboardHomePage />,
+      content: <DashboardHomeContent />,
       icon: <UserOutlined />,
     },
     {
