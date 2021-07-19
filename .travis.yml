@@ -52,12 +52,6 @@ script:
       docker run --rm \
         -e AWS_USER_POOL_ID \
         -e AWS_CLIENT_ID \
-        -e APPLE_ID \
-        -e APPLE_ID_PASS \
-        -e CSC_LINK \
-        -e CSC_KEY_PASSWORD \
-        -e WIN_CSC_LINK \
-        -e WIN_CSC_KEY_PASSWORD \
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
